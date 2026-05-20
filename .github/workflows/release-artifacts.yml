@@ -13,9 +13,7 @@ jobs:
             - name: Package tarballs
               run: |
                 cd src
-                for dir in *; do tar caf devcontainer-feature-${dir}.tgz -C ${dir} ./; done
-            - name: Upload artifacts
-              run: |
+                for dir in *; do if [ -d ${dir} ]; then tar caf devcontainer-feature-${dir}.tgz -C ${dir} ./; fi; done
                 gh release upload ${GITHUB_REF_NAME} --clobber *.tgz
               env:
                 GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
