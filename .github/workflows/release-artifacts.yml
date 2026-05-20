@@ -5,11 +5,16 @@ on:
 jobs:
     tarballs:
         runs-on: ubuntu-latest
+        permissions:
+            contents: write
         steps:
             - name: Checkout repository
               uses: actions/checkout@v6
             - name: Package tarballs
               run: |
-                tar caf continue-${GITHUB_REF_NAME}.tar.gz src/continue/*
-                tar caf gemini-${GITHUB_REF_NAME}.tar.gz src/gemini/*
-                gh release upload ${GITHUB_REF_NAME} --clobber continue-${GITHUB_REF_NAME}.tar.gz gemini-${GITHUB_REF_NAME}.tar.gz
+                cd src
+                for dir in *; do tar caf ${dir}-${GITHUB_REF_NAME}.tar.gz $dir/*; done
+                gh release upload ${GITHUB_REF_NAME} --clobber *.tar.gz
+              env:
+                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                GH_REPO: ${{ github.repository }}
