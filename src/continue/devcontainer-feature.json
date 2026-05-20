@@ -1,0 +1,13 @@
+{
+    "id": "continue",
+    "version": "1.0.0",
+    "name": "Continue.dev bind mount",
+    "description": "Bind mount for ~/.continue, used by Continue.dev extension",
+    "mounts": [
+        {
+            "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.continue",
+            "target": "/mnt/.continue",
+            "type": "bind"
+        }
+    ]
+}

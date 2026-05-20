@@ -1,0 +1,15 @@
+name: Release Artifacts
+on:
+    release:
+        types: [published]
+jobs:
+    tarballs:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v6
+            - name: Package tarballs
+              run: |
+                tar caf continue-${GITHUB_REF_NAME}.tar.gz src/continue/*
+                tar caf gemini-${GITHUB_REF_NAME}.tar.gz src/gemini/*
+                gh release upload ${GITHUB_REF_NAME} --clobber continue-${GITHUB_REF_NAME}.tar.gz gemini-${GITHUB_REF_NAME}.tar.gz
