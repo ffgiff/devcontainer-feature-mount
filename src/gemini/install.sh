@@ -1,0 +1,1 @@
+ln -s /mnt/.gemini ${HOME}/.gemini

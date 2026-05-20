@@ -1,0 +1,13 @@
+{
+    "id": "gemini",
+    "version": "1.0.0",
+    "name": "Google Gemini bind mount",
+    "description": "Bind mount for ~/.gemini, used by Google Gemini extension",
+    "mounts": [
+        {
+            "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.gemini",
+            "target": "/mnt/.gemini",
+            "type": "bind"
+        }
+    ]
+}
