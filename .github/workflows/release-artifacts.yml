@@ -13,7 +13,7 @@ jobs:
             - name: Package tarballs
               run: |
                 cd src
-                find * -type d -execdir tar -caf devcontainer-feature-{}.tgz -C {} ./ \;
+                for dir in *; do tar caf devcontainer-feature-${dir}.tgz -C ${dir} ./; done
             - name: Upload artifacts
               run: |
                 gh release upload ${GITHUB_REF_NAME} --clobber *.tgz
