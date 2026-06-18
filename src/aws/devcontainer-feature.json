@@ -1,0 +1,13 @@
+{
+    "id": "aws",
+    "version": "1.0.0",
+    "name": "AWS bind mount",
+    "description": "Bind mount for ~/.aws, used by Amazon Web Services",
+    "mounts": [
+        {
+            "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.aws",
+            "target": "/mnt/.aws",
+            "type": "bind"
+        }
+    ]
+}
