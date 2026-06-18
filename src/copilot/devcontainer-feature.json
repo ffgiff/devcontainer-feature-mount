@@ -1,0 +1,13 @@
+{
+    "id": "copilot",
+    "version": "1.0.0",
+    "name": "GitHub Copilot bind mount",
+    "description": "Bind mount for ~/.copilot, used by GitHub Copilot",
+    "mounts": [
+        {
+            "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.copilot",
+            "target": "/mnt/.copilot",
+            "type": "bind"
+        }
+    ]
+}
